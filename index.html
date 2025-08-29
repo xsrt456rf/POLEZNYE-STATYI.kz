@@ -1,228 +1,307 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>POLEZNYE-STATYI</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-h1 {
-    color: red;
-    text-align: center;
-    padding: 20px 0;
-}
-.tab {
-    overflow: hidden;
-    background-color: #111;
-}
-.tab button {
-    background-color: #111;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
+  :root{
+    --bg:#000;
+    --fg:#fff;
+    --panel:#0d0d0d;
+    --panel-2:#111;
+    --accent:#ff2b2b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--fg);
+  }
+  header{ text-align:center; padding:26px 12px 8px; }
+  header h1{ margin:0; color:var(--accent); font-size:32px; letter-spacing:1px; }
+
+  .tabs { display:flex; gap:4px; background:var(--panel); padding:6px; position:sticky; top:0; z-index:20; }
+  .tabs button{
+    background:transparent; color:var(--fg); border:0; padding:12px 16px; cursor:pointer; font-size:16px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  .tabs button:hover{
+    background:var(--panel-2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .tabs button.active{ background:#222; }
+
+  .container { max-width:1100px; margin:18px auto; padding:0 14px 80px; }
+
+  .tabcontent { display:none; padding:6px 0 40px; }
+
+  h2{ margin-top:6px; color:var(--fg); }
+  h3{ margin:8px 0; }
+  h4{ margin:12px 0 8px; }
+  p, li { color:var(--fg); line-height:1.6; }
+  ul { padding-left:18px; margin:6px 0 18px; }
+
+  .warning { background:#ffc107; color:#000; padding:12px; border-radius:6px; margin:12px 0; }
+
+  .image-row{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; align-items:center; }
+  .image-row img{ width:200px; height:200px; object-fit:cover; border-radius:8px; }
+  
+  .gallery-no-distort { display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; }
+  .gallery-no-distort img {
+    width:220px; height:220px; object-fit:contain; background:#0b0b0b; padding:8px; border-radius:8px;
+  }
+
+  .split { display:flex; gap:24px; align-items:flex-start; margin:8px 0 20px; }
+  .split .text { flex:1 1 0; min-width:0; }
+  .split .media { flex:0 0 500px; }
+  .split .media img{ width:100%; height:auto; border-radius:10px; display:block; }
+
+  .with-side { display:flex; gap:20px; align-items:flex-start; margin:14px 0; }
+  .with-side .side-img { flex:0 0 320px; }
+  .with-side .side-img img{ width:100%; height:auto; border-radius:8px; display:block; }
+
+  /* Стили для наведения на все картинки */
+  .image-row img, .gallery-no-distort img, .split .media img, .with-side .side-img img {
+    transition: transform .25s ease-out, filter .25s ease-out;
+  }
+  .image-row img:hover, .gallery-no-distort img:hover, .split .media img:hover, .with-side .side-img img:hover {
+    transform: scale(1.15);
+    filter: brightness(1.1);
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-}
-.tab button:hover {
-    background-color: #333;
-}
-.tab button.active {
-    background-color: #555;
-}
-.tabcontent {
-    display: none;
-    padding: 20px;
-}
-.image-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 10px 0;
-}
-.image-row img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
-.image-row img:hover {
-    transform: scale(1.1);
-}
-ul {
-    line-height: 1.6;
-}
+    position: relative;
+    z-index: 100;
+  }
+
+  @media (max-width:980px){
+    .split { flex-direction:column-reverse; }
+    .split .media{ width:100%; flex-basis:auto; }
+    .with-side { flex-direction:column-reverse; }
+    .image-row img, .gallery-no-distort img { width:140px; height:140px; }
+  }
+
+  footer { text-align:center; color:#bbb; padding:30px 12px; font-size:14px; }
+  a { color:inherit; text-decoration:underline; }
 </style>
 </head>
 <body>
 
-<h1>POLEZNYE-STATYI</h1>
+<header>
+  <h1>POLEZNYE-STATYI</h1>
+</header>
 
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'health')">ЗОЖ</button>
-  <button class="tablinks" onclick="openTab(event, 'business')">Онлайн бизнес</button>
-  <button class="tablinks" onclick="openTab(event, 'psychology')">Психология людей</button>
+<div class="tabs" role="tablist" aria-label="Основные вкладки">
+  <button class="tablink" data-tab="health" role="tab" aria-selected="true">ЗОЖ</button>
+  <button class="tablink" data-tab="business" role="tab" aria-selected="false">Онлайн бизнес</button>
+  <button class="tablink" data-tab="psychology" role="tab" aria-selected="false">Психология людей</button>
 </div>
 
-<!-- Вкладка ЗОЖ -->
-<div id="health" class="tabcontent">
-<h3>ЗОЖ</h3>
-<p>Все статьи основаны на мнениях специалистов и их опыте.</p>
+<div class="container">
 
-<h4>Простые причины тяжёлых заболеваний, о которых часто забывают</h4>
-<ul>
-<li><strong>Дефицит витамина D:</strong> влияет на иммунитет, кости, мышцы и настроение.</li>
-<li><strong>Стресс и повышенный кортизол:</strong> разрушает здоровье, повышает давление и воспалительные процессы.</li>
-<li><strong>Антибиотики:</strong> чрезмерное применение нарушает микрофлору.</li>
-<li><strong>Сидячий образ жизни:</strong> негативно сказывается на сердце, сосудах и мышцах.</li>
-<li><strong>Побочные эффекты от трав:</strong> даже натуральные средства могут влиять на органы и обмен веществ.</li>
-</ul>
+  <section id="health" class="tabcontent" role="tabpanel">
+    <h2>ЗОЖ</h2>
+    <div class="warning">⚠️ Внимание: все статьи основаны на мнениях специалистов и их опыте.</div>
 
-<h4>Яркие признаки различных заболеваний: на что обратить внимание</h4>
-<ul>
-<li><strong>Сыпь:</strong> может быть признаком аллергии; сопровождается зудом.</li>
-<li><strong>Частые простуды, мышечная слабость и запоры:</strong> часто указывают на дефицит витамина D.</li>
-<li><strong>Кашель:</strong> симптом бронхита или ОРВИ.</li>
-<li><strong>Вздутие и прыщи:</strong> связано с дисбактериозом.</li>
-<li><strong>Лишний вес:</strong> инсулинорезистентность, болезнь Хашимото или асцит.</li>
-<li><strong>Боль в пояснице:</strong> камни или песок в почках.</li>
-<li><strong>Боли в животе и рвота:</strong> могут быть признаками отравления.</li>
-<li><strong>Синдром беспокойных ног:</strong> дефицит магния вызывает судороги и тревожный сон.</li>
-</ul>
+    <h4>Простые причины тяжёлых заболеваний</h4>
+    <ul>
+      <li><strong>Дефицит витамина D</strong> — влияет на иммунитет, кости, мышцы и настроение.</li>
+      <li><strong>Стресс и повышенный кортизол</strong> — хронический стресс разрушает здоровье изнутри.</li>
+      <li><strong>Антибиотики</strong> — чрезмерное применение нарушает баланс микрофлоры.</li>
+      <li><strong>Сидячий образ жизни</strong> — отсутствие физической активности негативно сказывается на сердце, сосудах, мышцах и суставах.</li>
+      <li><strong>Побочные эффекты от трав</strong> — даже натуральные средства могут влиять на органы и обмен веществ.</li>
+    </ul>
+
+    <hr>
+
+    <h4>Яркие признаки различных заболеваний</h4>
+    <ul>
+      <li><strong>Сыпь после продуктов</strong> — может быть признаком аллергии; внезапно появляется и сопровождается зудом.</li>
+      <li><strong>Сыпь и слабость после натуральных антипаразитарных средств (куркума, гвоздика, черный орех и др.)</strong> — яркая реакция Яриша, когда организм бурно реагирует на очищение.</li>
+      <li><strong>Частые простуды, мышечная слабость и запоры</strong> — указывают на дефицит витамина D.</li>
+      <li><strong>Кашель</strong> — может быть симптомом бронхита или ОРВИ.</li>
+      <li><strong>Вздутие и прыщи</strong> — связаны с дисбактериозом или нарушенной микрофлорой кишечника.</li>
+      <li><strong>Лишний вес</strong> — возможны инсулинорезистентность, болезнь Хашимото и др.</li>
+      <li><strong>Боль в пояснице</strong> — часто свидетельствует о проблемах с почками.</li>
+      <li><strong>Боли в животе и рвота</strong> — могут быть признаками отравления.</li>
+      <li><strong>Синдром беспокойных ног</strong> — дефицит магния; вызывает судороги и тревожный сон.</li>
+    </ul>
+  </section>
+
+  <section id="business" class="tabcontent" role="tabpanel">
+    <h2>Онлайн бизнес</h2>
+
+    <h4>Методы продвижения</h4>
+    <ol>
+      <li><strong>Вирусные короткие видео</strong> — цепляй внимание за первые секунды; Reels, Shorts, TikTok.</li>
+      <li><strong>Сарафанное радио</strong> — сила личных связей, делись контентом с друзьями.</li>
+      <li><strong>Холодные рассылки</strong> — коротко, дружелюбно, показывай ценность сразу.</li>
+    </ol>
+
+    <hr>
+
+    <h4>Методы монетизации</h4>
+    <ul>
+      <li><strong>Продажа услуг или товаров через блоги</strong></li>
+      <li><strong>Донаты</strong> — поддержка аудитории.</li>
+      <li><strong>Google AdSense</strong> — показ рекламы на сайте или блоге.</li>
+    </ul>
+
+    <hr>
+
+    <h4>Востребованные виды интернет-заработка</h4>
+    <div class="split">
+      <div class="text">
+        <ul>
+          <li><strong>Познавательные статьи с монетизацией</strong></li>
+          <li><strong>Свой онлайн-магазин</strong></li>
+          <li><strong>Онлайн-курсы и консультации</strong></li>
+          <li><strong>Познавательный контент без личного участия</strong></li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="12.jpg" alt="Онлайн бизнес">
+      </div>
+    </div>
+  </section>
+
+  <section id="psychology" class="tabcontent" role="tabpanel">
+    <h2>Психология людей</h2>
+
+    <h4>Причины вредных привычек/зависимостей</h4>
+    <div class="split">
+      <div class="text">
+        <p>Наши привычки, особенно вредные, часто формируются под влиянием разных факторов. Они могут казаться случайными, но на самом деле имеют глубокие корни.</p>
+        <ul>
+          <li><strong>Окружение</strong> — круг общения сильно влияет на нас. Если близкие люди имеют вредные зависимости, человек может неосознанно начать их повторять.</li>
+          <li><strong>Стресс</strong> — многие люди используют вредные привычки как способ справиться с эмоциональным или физическим напряжением. Курение или переедание могут временно облегчить дискомфорт.</li>
+          <li><strong>Детство или переходный возраст</strong> — привычки могут формироваться в раннем возрасте из-за подражания взрослым или из-за желания бунтовать. Недостаток внимания может также приводить к поиску сомнительных занятий.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="14.jpg" alt="Причины вредных привычек">
+      </div>
+    </div>
+    <hr>
+    
+    <h4>Жалкие тактики манипуляторов: как их распознать в разговоре</h4>
+    <div class="gallery-no-distort" aria-hidden="false">
+      <img src="9.png" alt="Манипуляторы 9">
+      <img src="10.png" alt="Манипуляторы 10">
+      <img src="11.png" alt="Манипуляторы 11">
+    </div>
+    <p>Иногда даже простая беседа с человеком превращается в психологическую игру. Манипуляторы используют тонкие и неочевидные методы, чтобы выйти сухими из воды и заставить других сомневаться в себе. Вот самые распространённые приёмы.</p>
+    <ul>
+      <li><strong>Пассивная агрессия через насмешки</strong> — скрытая злоба проявляется через едкие шутки или «невинные» подколки.</li>
+      <li><strong>Обвинение других и игра в жертву</strong> — манипулятор никогда не признаёт ошибок: переводит ответственность на других; выставляет себя пострадавшим.</li>
+      <li><strong>Подмена понятий, игнор и лицемерие</strong> — любой неудобный вопрос встречает игнорированием, подменой темы или агрессией.</li>
+      <li><strong>Красивая речь для завоевания доверия</strong> — умеет очаровывать словесной «шелухой».</li>
+    </ul>
+
+    <hr>
+
+    <h4>Признаки экстраверта</h4>
+    <div class="image-row">
+      <img src="6.png" alt="Экстраверт 6">
+      <img src="7.png" alt="Экстраверт 7">
+      <img src="8.png" alt="Экстраверт 8">
+      <img src="16.jpg" alt="Экстраверт 16">
+    </div>
+    <ul>
+      <li>Разговорчивость даже при стеснительности</li>
+      <li>Посещение мероприятий</li>
+      <li>Неприязнь к одиночеству и тишине</li>
+      <li>Большой круг общения</li>
+    </ul>
+
+    <hr>
+
+    <h4>Признаки интроверта</h4>
+    <div class="image-row">
+      <img src="1.png" alt="Интроверт 1">
+      <img src="2.png" alt="Интроверт 2">
+      <img src="3.png" alt="Интроверт 3">
+      <img src="4.png" alt="Интроверт 4">
+      <img src="5.png" alt="Интроверт 5">
+    </div>
+    <ul>
+      <li>Узкий круг общения</li>
+      <li>Погружение в мысли</li>
+      <li>Сдержанность эмоций</li>
+      <li>Глубокие темы вместо болтовни</li>
+    </ul>
+
+    <hr>
+
+    <h4>Закомплексованный человек</h4>
+    <div class="with-side">
+      <div class="side-img">
+        <img src="13.jpg" alt="Закомплексованный человек">
+      </div>
+      <div class="side-text">
+        <ul>
+          <li>Самоирония и подколы за внешность</li>
+          <li>Привязанность к стандартам красоты</li>
+          <li>Неискренность ради удобства</li>
+          <li>Показушные разговоры без знаний</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <h4>Признаки перфекциониста</h4>
+    <ul>
+      <li>Фокус на недостатках у других</li>
+      <li>Строгая требовательность к окружающим</li>
+      <li>Завышенные цели, ведущие к прокрастинации</li>
+      <li>Болезненная реакция на свои ошибки</li>
+    </ul>
+
+    <hr>
+
+    <h4>Признаки инфантильного человека</h4>
+    <ul>
+      <li>Постоянное нытьё без действия</li>
+      <li>Обвинение всех вокруг</li>
+      <li>Обидчивость на критику</li>
+      <li>Ожидание помощи вместо самостоятельности</li>
+      <li>Постоянная смена целей, недоделывание дел</li>
+    </ul>
+
+    <hr>
+
+    <h4>Секреты красоты моделей с обложек</h4>
+    <ul>
+      <li>Уход за здоровьем — сон, питание, активность</li>
+      <li>Прическа под форму лица</li>
+      <li>Одежда под фигуру</li>
+    </ul>
+
+  </section>
+
 </div>
 
-<!-- Вкладка Онлайн бизнес -->
-<div id="business" class="tabcontent">
-<h3>Онлайн бизнес</h3>
-
-<h4>Как продвигать онлайн-бизнес бесплатно: три метода, которые реально работают</h4>
-<ul>
-<li><strong>Вирусные короткие видео:</strong> цепляй внимание за 5 секунд, добавляй динамику, эмоции и неожиданные элементы.</li>
-<li><strong>Сарафанное радио:</strong> проси друзей делиться контентом, демонстрируй успехи.</li>
-<li><strong>Холодные рассылки:</strong> коротко, дружелюбно, показывай ценность сразу.</li>
-</ul>
-
-<h4>Методы монетизации онлайн</h4>
-<ul>
-<li><strong>Продажа услуг или товаров через блоги:</strong> делись полезной информацией, а затем предлагай услуги или товары.</li>
-<li><strong>Донаты:</strong> блогерам и авторам контента; аудитория поддерживает деньгами.</li>
-<li><strong>Google AdSense:</strong> показ рекламы на сайте или блоге, доход зависит от посещаемости.</li>
-</ul>
-
-<h4>Востребованные виды интернет-заработка</h4>
-<div style="display: flex; align-items: flex-start; gap: 20px;">
-  <ul style="flex: 1;">
-    <li><strong>Познавательные статьи с монетизацией:</strong> привлекают читателей и приносят доход через рекламу, партнёрки или подписки.</li>
-    <li><strong>Свой онлайн-магазин:</strong> продажа товаров через интернет; продвижение через блог или соцсети бесплатно.</li>
-    <li><strong>Онлайн-курсы и консультации:</strong> делись знаниями через курсы, мастер-классы, консультации.</li>
-    <li><strong>Познавательный контент без личного участия:</strong> создавай статьи, видео или посты анонимно; доход через рекламу и партнёрки.</li>
-  </ul>
-  <img src="12.jpg" alt="Онлайн бизнес 12" style="width:500px; height:auto; object-fit:cover;">
-</div>
-</div>
-
-<!-- Вкладка Психология людей -->
-<div id="psychology" class="tabcontent">
-<h3>Психология людей</h3>
-
-<h4>Жалкие тактики манипуляторов: как их распознать в разговоре</h4>
-<div class="image-row">
-<img src="9.png" alt="Манипулятор 9">
-<img src="10.png" alt="Манипулятор 10">
-<img src="11.png" alt="Манипулятор 11">
-</div>
-<ul>
-<li><strong>Пассивная агрессия через насмешки:</strong> скрытая злоба проявляется через едкие шутки, сарказм или «невинные» подколки.</li>
-<li><strong>Обвинение других и игра в жертву:</strong> переводят ответственность на других и выставляют себя пострадавшими.</li>
-<li><strong>Подмена понятий, игнор и лицемерие:</strong> неудобные вопросы встречают игнорированием, подменой темы или агрессией.</li>
-<li><strong>Красивая речь для завоевания доверия:</strong> очаровывают словесной «шелухой», создавая иллюзию компетентности.</li>
-</ul>
-
-<h4>Признаки экстраверта: как понять, что перед вами человек, открытый миру</h4>
-<div class="image-row">
-<img src="6.png" alt="Экстраверт 6">
-<img src="7.png" alt="Экстраверт 7">
-<img src="8.png" alt="Экстраверт 8">
-</div>
-<ul>
-<li><strong>Разговорчивость и открытость:</strong> экстраверты склонны активно участвовать в беседе и выражать свои мысли.</li>
-<li><strong>Посещение мероприятий:</strong> любят вечеринки, конференции, встречи; комфортно в больших группах.</li>
-<li><strong>Нетерпимость к одиночеству и тишине:</strong> дискомфорт от долгого пребывания в одиночестве; для энергии нужно общение.</li>
-<li><strong>Огромный круг общения:</strong> строят и поддерживают множество социальных связей; общение даёт силы и вдохновение.</li>
-</ul>
-
-<h4>Признаки интроверта: как распознать человека, который любит тишину</h4>
-<div class="image-row">
-<img src="1.png" alt="Интроверт 1">
-<img src="2.png" alt="Интроверт 2">
-<img src="3.png" alt="Интроверт 3">
-<img src="4.png" alt="Интроверт 4">
-<img src="5.png" alt="Интроверт 5">
-</div>
-<ul>
-<li><strong>Узкий круг общения:</strong> ценят качество, а не количество контактов.</li>
-<li><strong>Постоянная задумчивость:</strong> анализируют ситуации и события, внутренний мир важнее внешнего.</li>
-<li><strong>Сдержанность эмоций:</strong> эмоции проявляются умеренно, чтобы сохранить внутреннее равновесие.</li>
-<li><strong>Глубокие темы вместо болтовни:</strong> интересуют идеи, философия, личностный рост; пустые разговоры воспринимают как трату времени.</li>
-</ul>
-
-<h4>Три признака закомплексованного человека</h4>
-<ul>
-<li><strong>Самоирония и подколы за внешность:</strong> легкие подколы скрывают внутреннюю неуверенность.</li>
-<li><strong>Привязанность к стандартам красоты:</strong> стремятся соответствовать чужим ожиданиям.</li>
-<li><strong>Неискренность ради удобства окружающих:</strong> скрывают настоящие эмоции и мысли.</li>
-<li><strong>Показушные разговоры на тему без знаний для умного вида:</strong> чтобы выглядеть компетентно.</li>
-</ul>
-
-<h4>Признаки перфекциониста: когда стремление к идеалу становится проблемой</h4>
-<ul>
-<li><strong>Фокус на недостатках у других:</strong> замечают малейшие ошибки.</li>
-<li><strong>Строгая требовательность к окружающим:</strong> создаёт напряжённые отношения.</li>
-<li><strong>Завышенные цели, которые ведут к прокрастинации:</strong> стремление к высокому результату становится навязчивым.</li>
-<li><strong>Болезненная реакция на свои ошибки:</strong> любая оплошность воспринимается как катастрофа.</li>
-</ul>
-
-<h4>Признаки инфантильного человека</h4>
-<ul>
-<li><strong>Постоянное нытьё без действия:</strong> жалуется, но редко предпринимает реальные шаги.</li>
-<li><strong>Обвинение всех вокруг:</strong> любая ошибка — вина других, играет роль жертвы.</li>
-<li><strong>Обидчивость и болезненная реакция на критику:</strong> даже конструктивный совет воспринимается как нападение.</li>
-<li><strong>Ожидание помощи вместо самостоятельности:</strong> рассчитывает, что кто-то решит проблемы; ограничивает личностный рост.</li>
-</ul>
-
-<h4>Секреты красоты моделей с обложек</h4>
-<ul>
-<li><strong>Уход за здоровьем — основа всего:</strong> правильный сон, питание, физическая активность.</li>
-<li><strong>Прическа под форму лица:</strong> подчёркивает достоинства и скрывает недостатки.</li>
-<li><strong>Одежда под фигуру:</strong> визуально улучшает пропорции и создаёт уверенность.</li>
-</ul>
-
-</div>
+<footer>
+  <div>© POLEZNYE-STATYI — все права защищены</div>
+</footer>
 
 <script>
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
+const tabButtons = document.querySelectorAll('.tablink');
+const tabContents = document.querySelectorAll('.tabcontent');
+
+function showTab(id){
+  tabContents.forEach(tc=>tc.style.display='none');
+  tabButtons.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false');});
+  const el=document.getElementById(id); if(el) el.style.display='block';
+  const btn=document.querySelector(`.tablink[data-tab="${id}"]`);
+  if(btn){btn.classList.add('active'); btn.setAttribute('aria-selected','true');}
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-// Открываем вкладку ЗОЖ по умолчанию
-document.getElementsByClassName('tablinks')[0].click();
+
+tabButtons.forEach(btn=>btn.addEventListener('click',()=>showTab(btn.dataset.tab)));
+showTab('health');
 </script>
 
 </body>
