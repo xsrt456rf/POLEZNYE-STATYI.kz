@@ -7,15 +7,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
   :root {
-    --bg: #000000; /* Черный фон */
-    --fg: #ffffff; /* Белый текст */
-    --card: #1a1a1a; /* Темные карточки для контраста */
-    --accent: #ff0000; /* Красный цвет для заголовка и акцентов */
-    --accent-hover: #cc0000; /* Темно-красный при наведении */
+    --bg: #000000;
+    --fg: #ffffff;
+    --card: #1a1a1a;
+    --accent: #ff0000;
+    --accent-hover: #cc0000;
     --warning: #ffc107;
-    --border-color: #333333; /* Темный цвет для границ */
-    --shadow-dark: rgba(255, 255, 255, 0.08); /* Легкая светлая тень на темном фоне */
-    --shadow-hover-dark: rgba(255, 255, 255, 0.15); /* Тень при наведении */
+    --border-color: #333333;
+    --shadow-dark: rgba(255, 255, 255, 0.08);
+    --shadow-hover-dark: rgba(255, 255, 255, 0.15);
   }
   * { box-sizing: border-box; }
   body {
@@ -23,21 +23,21 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: var(--bg);
     color: var(--fg);
-    line-height: 1.6;
+    line-height: 1.7;
   }
   header {
     text-align: center;
-    padding: 30px 15px 20px;
+    padding: 60px 15px 40px;
     background: var(--card);
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 4px var(--shadow-dark);
   }
   header h1 {
     margin: 0;
-    color: var(--accent); /* Красный цвет для заголовка */
-    font-size: 32px;
-    letter-spacing: 1px;
-    font-weight: 600;
+    color: var(--accent);
+    font-size: 44px;
+    letter-spacing: 2px;
+    font-weight: 700;
   }
   .tabs {
     display: flex;
@@ -56,9 +56,9 @@
     color: var(--fg);
     border: 0;
     border-bottom: 3px solid transparent;
-    padding: 15px 20px;
+    padding: 20px 25px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     border-radius: 0;
@@ -67,7 +67,7 @@
   .tabs button:hover {
     color: var(--accent);
     border-bottom-color: var(--accent);
-    background-color: rgba(255, 255, 255, 0.05); /* Легкий фон при наведении */
+    background-color: rgba(255, 255, 255, 0.05);
   }
   .tabs button.active {
     color: var(--accent);
@@ -75,156 +75,151 @@
     font-weight: 600;
   }
   .container {
-    max-width: 960px;
-    margin: 30px auto;
-    padding: 0 15px;
+    max-width: 1024px;
+    margin: 60px auto;
+    padding: 0 30px;
   }
   .tabcontent {
     display: none;
-    padding: 30px;
+    padding: 60px;
     background: var(--card);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--shadow-dark);
-    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow-dark);
+    margin-bottom: 40px;
   }
   h2 {
     margin-top: 0;
     color: var(--accent);
-    font-size: 26px;
+    font-size: 32px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     font-weight: 600;
   }
   h4 {
-    margin: 25px 0 15px;
+    margin: 30px 0 20px;
     color: var(--fg);
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 600;
   }
   p, li {
     color: var(--fg);
-    line-height: 1.7;
-    font-size: 15px;
+    line-height: 1.8;
+    font-size: 16px;
   }
   ul, ol {
     padding-left: 20px;
-    margin: 15px 0 25px;
+    margin: 20px 0 30px;
   }
   hr {
     border: none;
     height: 1px;
     background-color: var(--border-color);
-    margin: 40px 0;
+    margin: 60px 0;
   }
-  .warning {
-    background: #333300; /* Темный фон для предупреждения */
-    color: #ffffa0; /* Светлый текст для предупреждения */
-    padding: 15px;
-    border-radius: 6px;
-    margin: 20px 0;
+  .warning, .psychology-disclaimer {
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px 0;
     font-weight: 500;
-    border: 1px solid #555500;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+  }
+  .warning {
+    background: #333300;
+    color: #ffffa0;
+    border: 1px solid #555500;
   }
   .warning i {
     color: var(--warning);
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
   .psychology-disclaimer {
     background: #330000;
     color: #ffb3b3;
-    padding: 15px;
-    border-radius: 6px;
-    margin: 20px 0;
-    font-weight: 500;
     border: 1px solid #550000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
   .psychology-disclaimer i {
     color: #ff0000;
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
   .image-row, .gallery-no-distort {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin: 25px 0;
+    gap: 20px;
+    margin: 30px 0;
     justify-content: center;
   }
   .image-row img, .gallery-no-distort img, .split .media img, .with-side .side-img img {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px var(--shadow-dark);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow-dark);
     flex-shrink: 0;
     object-fit: cover;
     border: 1px solid var(--border-color);
   }
   .image-row img {
-    width: 150px; /* Уменьшенный размер */
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
   .gallery-no-distort img {
-    width: 180px; /* Уменьшенный размер */
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
-    background: #222222; /* Темный фон для contain-изображений */
-    padding: 8px;
+    background: #222222;
+    padding: 10px;
   }
   .image-row img:hover, .gallery-no-distort img:hover, .split .media img:hover, .with-side .side-img img:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px var(--shadow-hover-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-hover-dark);
     cursor: pointer;
   }
   .split {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     align-items: flex-start;
-    margin: 25px 0 35px;
+    margin: 30px 0 50px;
   }
   .split .text { flex: 1 1 0; min-width: 0; }
-  .split .media { flex: 0 0 350px; } /* Еще немного уменьшим */
+  .split .media { flex: 0 0 400px; }
   .split .media img { width: 100%; height: auto; }
   .with-side {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     align-items: flex-start;
-    margin: 25px 0;
+    margin: 30px 0;
   }
-  .with-side .side-img { flex: 0 0 250px; } /* Еще немного уменьшим */
+  .with-side .side-img { flex: 0 0 300px; }
   .with-side .side-img img { width: 100%; height: auto; }
   @media (max-width: 768px) {
     .split, .with-side { flex-direction: column-reverse; }
     .split .media, .with-side .side-img { width: 100%; flex-basis: auto; }
     .image-row img, .gallery-no-distort img {
-      width: 100px; /* Еще уменьшим для мобильных */
-      height: 100px;
+      width: 120px;
+      height: 120px;
     }
     .tabs button {
-      padding: 12px 15px;
-      font-size: 14px;
+      padding: 15px 18px;
+      font-size: 16px;
     }
-    h1 { font-size: 28px; }
-    h2 { font-size: 22px; }
-    h4 { font-size: 17px; }
-    .tabcontent { padding: 20px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 26px; }
+    h4 { font-size: 19px; }
+    .tabcontent { padding: 30px; }
   }
   footer {
     text-align: center;
     color: #888;
-    padding: 30px 15px;
-    font-size: 13px;
+    padding: 40px 15px;
+    font-size: 14px;
     background: var(--card);
     border-top: 1px solid var(--border-color);
     box-shadow: 0 -2px 4px var(--shadow-dark);
-    margin-top: 30px;
+    margin-top: 40px;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -235,14 +230,14 @@
   <h1>POLEZNYE-STATYI</h1>
 </header>
 <div class="tabs" role="tablist" aria-label="Основные вкладки">
-  <button class="tablink" data-tab="health" role="tab" aria-selected="true"><i class="fas fa-heartbeat"></i> ЗОЖ</button>
-  <button class="tablink" data-tab="business" role="tab" aria-selected="false"><i class="fas fa-briefcase"></i> Онлайн бизнес</button>
-  <button class="tablink" data-tab="psychology" role="tab" aria-selected="false"><i class="fas fa-brain"></i> Психология людей</button>
+  <button class="tablink" data-tab="health" role="tab" aria-controls="health-tab" aria-selected="true"><i class="fas fa-heartbeat"></i> ЗОЖ</button>
+  <button class="tablink" data-tab="business" role="tab" aria-controls="business-tab" aria-selected="false"><i class="fas fa-briefcase"></i> Онлайн бизнес</button>
+  <button class="tablink" data-tab="psychology" role="tab" aria-controls="psychology-tab" aria-selected="false"><i class="fas fa-brain"></i> Психология людей</button>
 </div>
 <div class="container">
-  <section id="health" class="tabcontent" role="tabpanel">
+  <section id="health" class="tabcontent" role="tabpanel" aria-labelledby="health-tab">
     <h2><i class="fas fa-heartbeat"></i> ЗОЖ</h2>
-    <div class="warning"><i class="fas fa-exclamation-triangle"></i> Внимание: все статьи основаны на мнениях специалистов и их опыте.</div>
+    <div class="disclaimer warning"><i class="fas fa-exclamation-triangle"></i> Внимание: все статьи основаны на мнениях специалистов и научных исследованиях.</div>
     <h4>Как здоровье влияет на половую жизнь, бизнес и коммуникацию</h4>
     <p>Хорошее физическое и психическое здоровье напрямую отражается на всех сферах жизни:</p>
     <ul>
@@ -250,6 +245,29 @@
       <li><strong>Бизнес:</strong> выносливость, концентрация и стрессоустойчивость позволяют принимать решения быстрее, сохранять продуктивность и влиять на коллег и партнёров.</li>
       <li><strong>Коммуникация:</strong> здоровый человек увереннее, эмоционально стабильнее и лучше воспринимает сигналы других, что улучшает переговоры и личные контакты.</li>
     </ul>
+    <hr>
+    <h4>Почему не стоит тратить деньги на лечение зубов к стоматологам</h4>
+    <ul>
+      <li><strong>Кариес развивается в основном из-за сахара.</strong> Сокращение потребления сахара — это ключевой шаг к предотвращению кариеса, так как сахар создаёт кислую среду, в которой размножаются бактерии, разрушающие эмаль.</li>
+      <li><strong>Прочистить налёт можно содой или мисваком/сиваком.</strong> Эти средства могут быть эффективны для механического удаления налёта и поддержания гигиены рта, а также являются доступной альтернативой.</li>
+      <li><strong>Стоматологи не убирают причину.</strong> Стоматологические процедуры часто сосредоточены на устранении последствий, а не на корневых причинах, таких как неправильное питание и плохая гигиена.</li>
+    </ul>
+    <hr>
+    <div class="split">
+      <div class="text">
+        <h4>Советы для здоровья без врачей</h4>
+        <ul>
+          <li><strong>Калистеника</strong> — упражнения с собственным весом для сжигания жира, поддержки иммунитета и гормонов.</li>
+          <li><strong>Витамин D3</strong> — важен для иммунитета, помогает при запорах и частых простудах.</li>
+          <li><strong>Авиарежим на телефоне</strong> — снижает воздействие электромагнитных полей (ЭМП). Помимо этого, следует держать монитор компьютера или ноутбука подальше от тела, чтобы избежать токсичного действия ЭМП.</li>
+          <li><strong>Удаление аллергенов</strong> — не держите в доме потенциальные аллергены, например, некоторые травы. Если этого не сделать, они могут вызвать запор, тревожность, раздражительность и бессонницу.</li>
+          <li><strong>Правильное питание</strong> — употребляйте медленные углеводы, достаточно белков и жиров для сохранения ресурсов организма.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="анатомия.png" alt="Анатомия человека">
+      </div>
+    </div>
     <hr>
     <div class="split">
       <div class="text">
@@ -273,21 +291,29 @@
       <li><strong>Сыпь и слабость после натуральных антипаразитарных средств (куркума, гвоздика, черный орех и др.)</strong> — яркая реакция Яриша, когда организм бурно реагирует на очищение.</li>
       <li><strong>Частые простуды, мышечная слабость и запоры</strong> — указывают на дефицит витамина D.</li>
       <li><strong>Кашель</strong> — может быть симптомом бронхита или ОРВИ.</li>
-      <li><strong>Вздутие и прыщи</strong> — связаны с дисбактериозом или нарушенной микрофлорой кишечника.</li>
+        <li><strong>Вздутие и прыщи</strong> — связаны с дисбактериозом или нарушенной микрофлорой кишечника.</li>
       <li><strong>Лишний вес</strong> — возможны инсулинорезистентность, болезнь Хашимото и др.</li>
-      <li><strong>Боль в пояснице</strong> — часто свидетельствует о проблемах с почками.</li>
+      <li><strong>Боль в пояснице</strong> — часто свидетельствует о проблемах с почками или о проблемах с позвоночником (смещение позвонков, грыжа).</li>
+      <li><strong>Боль в правом подреберье</strong> — может быть признаком гепатита.</li>
       <li><strong>Боли в животе и рвота</strong> — могут быть признаками отравления.</li>
       <li><strong>Синдром беспокойных ног</strong> — дефицит магния; вызывает судороги и тревожный сон.</li>
     </ul>
   </section>
-  <section id="business" class="tabcontent" role="tabpanel">
+  <section id="business" class="tabcontent" role="tabpanel" aria-labelledby="business-tab">
     <h2><i class="fas fa-briefcase"></i> Онлайн бизнес</h2>
-    <h4>Методы продвижения</h4>
-    <ol>
-      <li><strong>Вирусные короткие видео</strong> — цепляй внимание за первые секунды; Reels, Shorts, TikTok.</li>
-      <li><strong>Сарафанное радио</strong> — сила личных связей, делись контентом с друзьями.</li>
-      <li><strong>Холодные рассылки</strong> — коротко, дружелюбно, показывай ценность сразу.</li>
-    </ol>
+    <div class="split">
+      <div class="media">
+        <img src="бабло.jpg" alt="Изображение денег">
+      </div>
+      <div class="text">
+        <h4>Методы продвижения</h4>
+        <ol>
+          <li><strong>Вирусные короткие видео</strong> — цепляй внимание за первые секунды; Reels, Shorts, TikTok.</li>
+          <li><strong>Сарафанное радио</strong> — сила личных связей, делись контентом с друзьями.</li>
+          <li><strong>Холодные рассылки</strong> — коротко, дружелюбно, показывай ценность сразу.</li>
+        </ol>
+      </div>
+    </div>
     <hr>
     <h4>Методы монетизации</h4>
     <ul>
@@ -310,10 +336,43 @@
         <img src="12.jpg" alt="Онлайн бизнес">
       </div>
     </div>
+    <hr>
+    <h4>Что мешает людям выйти на пассивный доход</h4>
+    <ul>
+      <li><strong>Страх конкуренции.</strong> Конкуренция — это естественная часть любого бизнеса, как онлайн, так и офлайн. Важно не бояться её, а изучать и находить свои преимущества.</li>
+      <li><strong>Оправдание своих неудач/инфантилизм.</strong> Успех не приходит без усилий и ошибок. Вместо того чтобы искать виноватых, нужно учиться на промахах и двигаться дальше.</li>
+      <li><strong>Синдром самозванца/прокрастинация.</strong> Чувство, что ты недостаточно хорош, и постоянное откладывание дел мешают начать и развивать свой проект. С ними можно бороться только действиями и маленькими шагами.</li>
+      <li><strong>Стереотип, что интернет-работа — это развод или нестабильность.</strong> Хотя в сети много сомнительных схем, существует множество легальных и прибыльных моделей заработка, которые могут стать основным источником дохода.</li>
+    </ul>
+    <hr>
+    <h4>Признаки инфоцыгана в онлайн-бизнесе</h4>
+    <ul>
+      <li><strong>Даёт гарантию лёгких денег.</strong> Обещания быстрого и простого заработка без усилий — главный признак мошенничества. Реальный бизнес требует времени, труда и вложений.</li>
+      <li><strong>Негативные отзывы о продукте или услуге.</strong> Если вы находите много отрицательных отзывов, особенно от тех, кто уже заплатил за продукт, это повод задуматься.</li>
+      <li><strong>Двойные стандарты.</strong> Инфоцыган может рассказывать, как он заработал миллионы, но при этом продавать курс за копейки, чтобы якобы "помочь людям".</li>
+      <li><strong>Переводит стрелки.</strong> Обвиняет своих учеников в отсутствии результата, вместо того чтобы признать, что его продукт не работает или даёт неверную информацию.</li>
+      <li><strong>Продаёт "уникальный" способ заработка, который привёл его к успеху.</strong> В реальности же, его единственный реальный источник дохода — это продажа этого самого способа.</li>
+      <li><strong>Не раскрывает свою личность.</strong> Продаёт курсы, скрывая своё лицо или используя поддельные имена и фотографии.</li>
+      <li><strong>Оскорбление разоблачителей.</strong> Вместо того чтобы спокойно отвечать на критику, инфоцыган начинает оскорблять тех, кто пытается его разоблачить.</li>
+    </ul>
   </section>
-  <section id="psychology" class="tabcontent" role="tabpanel">
+  <section id="psychology" class="tabcontent" role="tabpanel" aria-labelledby="psychology-tab">
     <h2><i class="fas fa-brain"></i> Психология людей</h2>
-    <div class="psychology-disclaimer"><i class="fas fa-exclamation-triangle"></i> Внимание: статьи основаны на реальных историях людей.</div>
+    <div class="disclaimer psychology-disclaimer"><i class="fas fa-exclamation-triangle"></i> Внимание: статьи основаны на реальных историях людей.</div>
+    <div class="split">
+      <div class="media">
+        <img src="дурка.jpg" alt="Психиатрическая больница">
+      </div>
+      <div class="text">
+        <h4>Как психиатрические больницы наживаются на пациентах</h4>
+        <ul>
+          <li><strong>Сотрудничество с фармацевтическими компаниями.</strong> Психиатрические клиники могут получать процент от продаж лекарств, выписывая пациентам те препараты, которые им выгодны.</li>
+          <li><strong>Постановка ложных диагнозов.</strong> Иногда врачи могут ставить пациентам ложные или преувеличенные диагнозы (например, обычный интроверт может получить диагноз "расстройство личности"), чтобы обосновать назначение дорогих лекарств.</li>
+          <li><strong>Утаивание информации.</strong> Пациентам могут не говорить о том, что психические нарушения могут быть вызваны простым стрессом или сбоями в работе организма, и что это можно вылечить без тяжёлых препаратов.</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
     <h4>Причины вредных привычек/зависимостей</h4>
     <div class="split">
       <div class="text">
@@ -345,18 +404,64 @@
         </div>
     </div>
     <hr>
-    <h4>Жалкие тактики манипуляторов: как их распознать в разговоре</h4>
+    <h4>Как люди портят себе критическое мышление</h4>
+    <div class="split">
+      <div class="text">
+        <p>Критическое мышление — это способность анализировать информацию и делать обоснованные выводы. Оно помогает отличать правду от лжи, но многие неосознанно его портят.</p>
+        <ul>
+          <li><strong>Отсутствие сравнения источников.</strong> Современный мир переполнен данными, но не все из них достоверны. Вместо того чтобы изучать первоисточники и проверять факты, люди часто ограничиваются заголовками или слухами.</li>
+          <li><strong>Слепое использование ИИ.</strong> Искусственный интеллект — это мощный инструмент, но он не может заменить человека в анализе. ИИ просто перерабатывает информацию из интернета, не всегда проверяя её на достоверность.</li>
+          <li><strong>Вера сомнительным экспертам.</strong> Многие люди верят лжеэкспертам или авторитетам, не имеющим реальных знаний. Вместо того чтобы проверять их квалификацию, люди принимают их слова на веру, особенно если они звучат убедительно.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="критическое мышление.jpg" alt="Критическое мышление">
+      </div>
+    </div>
+    <hr>
+    <div class="split">
+      <div class="text">
+        <h4>Список когнитивных искажений в обществе</h4>
+        <ul>
+          <li><strong>"Деньги решают всё"</strong> — это опровергается смертью Джона Кеннеди и арестом Арсена Маркаряна.</li>
+          <li><strong>"Качки сильнее дрыщей"</strong> — это опровергается примерами многих бойцов UFC.</li>
+          <li><strong>"Без образования станешь бомжом"</strong> — это опровергается примерами успешных блогеров и веб-разработчиков, которые добились успеха без традиционного образования.</li>
+          <li><strong>"Известные бойцы непобедимы"</strong> — у каждого сильного бойца есть проигрыши, даже у Майка Тайсона и Фёдора Емельяненко. К тому же, судейство в боевых федерациях, например в UFC, может быть нечестным.</li>
+          <li><strong>"Быть строгим к себе, чтобы стать лучше"</strong> — это форма перфекционизма, которая приводит к самобичеванию и низкой самооценке. Намного лучше находить баланс между строгостью к себе и оправданиями, чтобы не стать инфантильным.</li>
+          <li><strong>"Никому нельзя доверять"</strong> — эта установка является формой паранойи, а не критического мышления. Она приводит к закрытости перед новой информацией, которая могла бы оказаться полезной, и мешает построению здоровых отношений и доверию.</li>
+        </ul>
+      </div>
+      <div class="media">
+        <img src="общество.jpg" alt="Когнитивные искажения в обществе">
+      </div>
+    </div>
+    <hr>
+    <h4>Признаки настоящей любви супруги</h4>
+    <div class="with-side">
+      <div class="side-img">
+        <img src="пара.jpg" alt="Настоящая любовь супруги">
+      </div>
+      <div class="side-text">
+        <ul>
+          <li><strong>Ревность.</strong> Проявление ревности может быть одним из признаков любви, так как человек боится потерять вас. Однако это должно быть в пределах разумного и не переходить в тотальный контроль.</li>
+          <li><strong>Забота и моральная поддержка в трудностях.</strong> Когда супруга искренне любит, она поддерживает вас в сложные моменты, проявляет заботу и сопереживание. Она не оставляет вас наедине с проблемами, а помогает найти решение.</li>
+          <li><strong>Физические прикосновения.</strong> Физический контакт — это важный аспект в отношениях. Прикосновения, объятия и поцелуи показывают не только физическое влечение, но и глубокую эмоциональную привязанность.</li>
+          <li><strong>Забота о своей внешности.</strong> Если супруга следит за собой и старается выглядеть хорошо для вас, это признак того, что она ценит ваши отношения и хочет оставаться привлекательной для вас.</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <h4>Тактики манипуляторов в диспутах/дебатах</h4>
     <div class="gallery-no-distort" aria-hidden="false">
       <img src="9.png" alt="Манипуляторы 9">
       <img src="10.png" alt="Манипуляторы 10">
       <img src="11.png" alt="Манипуляторы 11">
     </div>
-    <p>Иногда даже простая беседа с человеком превращается в психологическую игру. Манипуляторы используют тонкие и неочевидные методы, чтобы выйти сухими из воды и заставить других сомневаться в себе. Вот самые распространённые приёмы.</p>
     <ul>
-      <li><strong>Провокация дебатов с пассивной агрессией</strong> — скрытая злоба проявляется через едкие шутки или «невинные» подколки, цель которых — вызвать конфликт.</li>
-      <li><strong>Игра в жертву во время разоблачения</strong> — манипулятор никогда не признаёт ошибок: он переводит ответственность на других и выставляет себя пострадавшим.</li>
-      <li><strong>Подмена понятий, игнор и лицемерие</strong> — любой неудобный вопрос встречает игнорированием, подменой темы или агрессией.</li>
-      <li><strong>Красивая речь для завоевания доверия</strong> — умеет очаровывать словесной «шелухой».</li>
+      <li><strong>Перебивание</strong> — часто используется для сбивания с мысли, прерывания аргументации или для того, чтобы не дать собеседнику высказаться полностью.</li>
+      <li><strong>Насмешки для скрытия подозрения</strong> — манипулятор может высмеивать или преуменьшать значимость аргументов оппонента, чтобы отвести от себя подозрения и подорвать уверенность собеседника.</li>
+      <li><strong>Подмены понятия</strong> — искажение смысла слов или фраз, чтобы изменить тему разговора, уйти от ответа или запутать оппонента.</li>
+      <li><strong>Оправдание вместо признания своих ошибок</strong> — вместо того чтобы взять на себя ответственность, манипулятор начинает оправдываться, перекладывать вину или искать внешние причины своих неудач.</li>
     </ul>
     <hr>
     <h4>Признаки экстраверта</h4>
@@ -414,20 +519,31 @@
         </ul>
       </div>
       <div class="media">
-        <img src="18.jpg" alt="Перфекционист">
+        <img src="перфекционизм.jpg" alt="Перфекционист">
       </div>
     </div>
     <hr>
     <h4>Признаки инфантильного человека</h4>
-    <ul>
-      <li>Постоянное нытьё без действия</li>
-      <li>Обвинение всех вокруг</li>
-      <li>Обидчивость на критику</li>
-      <li>Ожидание помощи вместо самостоятельности</li>
-      <li>Постоянная смена целей, недоделывание дел</li>
-    </ul>
+    <div class="with-side">
+      <div class="side-img">
+        <img src="инфант.jpg" alt="Инфантильный человек">
+      </div>
+      <div class="side-text">
+        <ul>
+          <li>Постоянное нытьё без действия</li>
+          <li>Обвинение всех вокруг</li>
+          <li>Обидчивость на критику</li>
+          <li>Ожидание помощи вместо самостоятельности</li>
+          <li>Постоянная смена целей, недоделывание дел</li>
+        </ul>
+      </div>
+    </div>
     <hr>
     <h4>Секреты красоты моделей с обложек</h4>
+    <div class="image-row">
+      <img src="глоу ап.png" alt="Глоу ап 1">
+      <img src="глоу ап 2.jpg" alt="Глоу ап 2">
+    </div>
     <ul>
       <li>Уход за здоровьем — сон, питание, активность</li>
       <li>Прическа под форму лица</li>
@@ -441,22 +557,34 @@
 <script>
 const tabButtons = document.querySelectorAll('.tablink');
 const tabContents = document.querySelectorAll('.tabcontent');
+
 function showTab(id) {
+  // Скрываем все вкладки и убираем активный класс
   tabContents.forEach(tc => tc.style.display = 'none');
   tabButtons.forEach(b => {
     b.classList.remove('active');
     b.setAttribute('aria-selected', 'false');
   });
+
+  // Показываем нужную вкладку и делаем кнопку активной
   const el = document.getElementById(id);
-  if (el) el.style.display = 'block';
   const btn = document.querySelector(`.tablink[data-tab="${id}"]`);
-  if (btn) {
+
+  if (el && btn) {
+    el.style.display = 'block';
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
   }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-tabButtons.forEach(btn => btn.addEventListener('click', () => showTab(btn.dataset.tab)));
+
+// Добавляем обработчик клика для всех кнопок
+tabButtons.forEach(btn => btn.addEventListener('click', () => {
+  showTab(btn.dataset.tab);
+}));
+
+// Показываем первую вкладку при загрузке страницы
 showTab('health');
 </script>
 </body>
